@@ -1,0 +1,43 @@
+<section ng-controller="TemplatesController" ng-init="init()">
+  <div class="page-header">
+    <h1>New Template</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="templateForm" class="form-horizontal"  ng-submit="create(templateForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Unique template name</label>
+          <input name="name" type="text" ng-model="name" id="skill_name" class="form-control" placeholder="Name" required>
+          <div ng-messages="templateForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Skill name is required.</p>
+          </div>
+        </div>
+          <div class="form-group" show-errors>
+              <label for="templateTypeId" class="control-label">Template Type</label>
+              <div class="dropdown col-sm-10" id="templateTypeId">
+                  <label class="radio-inline">
+                      <input type="radio" value="Question" name="templateType" ng-model="templateType"> Question Template
+                  </label>
+                  <label class="radio-inline">
+                      <input type="radio" value="Answer" name="templateType" ng-model="templateType"> Answer Template
+                  </label>
+              </div>
+        </div>
+        <div class="form-group">
+          <label for="comment">Template Expression:</label>
+          <textarea class="form-control" rows="5" id="comment" ng-model="template.templateBody"></textarea>
+        </div>
+        <div class="form-group">
+            <span> {{template.templateBody}}</span>
+        </div>
+        <div class="form-group" preview-template="template.templateBody"></div>
+          <div class="form-group">
+              <input type="submit" class="btn btn-default">
+          </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

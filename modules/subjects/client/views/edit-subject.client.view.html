@@ -1,0 +1,38 @@
+<section ng-controller="SubjectsController" ng-init="findOne()">
+  <div class="page-header">
+    <h1>Edit Subject</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="subjectForm" class="form-horizontal" ng-submit="update(subjectForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Name</label>
+          <input name="name" type="text" ng-model="subject.name" id="subject_name" class="form-control" placeholder="Name" required>
+          <div ng-messages="subjectForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">subject name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code">Code</label>
+          <input name="code" type="text" ng-model="subject.code" id="subject_code" class="form-control" placeholder="Code" required>
+          <div ng-messages="subjectForm.code.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Subject code is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="syllabus">Standard</label>
+          <input name="syllabus" type="text" ng-model="subject.syllabus" id="subject_syllabus" class="form-control" placeholder="Syllabus" required>
+          <div ng-messages="subjectForm.standard.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Subject standard is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,109 @@
+<section ng-controller="AssessmentsController" ng-init="init()">
+  <div class="page-header">
+    <h1>New Assessment</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="assessmentForm" class="form-horizontal"  ng-submit="create(assessmentForm.$valid)" novalidate>
+      <fieldset>
+
+        <div class="form-group">
+          <label for="dropdownMenu1" class="col-sm-2 control-label">Grade</label>
+          <div class="dropdown col-sm-10" id="dropdownMenu1">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title1">{{selectedGrade}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="grade in grades"><a tabindex="-1" href="#" ng-click="selectGrade(grade)">{{grade.name}}</a></li>
+            </ul>
+          </div>
+          </div>
+
+          <div class="form-group">
+          <label for="dropdownMenu2" class="col-sm-2 control-label">Subject</label>
+          <div class="dropdown col-sm-10" id="dropdownMenu2">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title2">{{selectedSubject}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="subject in subjects"><a tabindex="-1" href="#" ng-click="selectSubject(subject)">{{subject.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dropdownMenu3" class="col-sm-2 control-label">Topics</label>
+          <div class="dropdown col-sm-10" id="dropdownMenu3">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title3">{{selectedTopic}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="topic in topics"><a tabindex="-1" href="#" ng-click="selectTopic(topic)">{{topic.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="skillsgroup" class="col-sm-2 control-label">Search</label>
+          <div class="col-sm-10" id="skillsgroup">
+            <input name="skillSearch" type="text" ng-model="skillSearch" id="skillSearch" class="form-control" placeholder="SkillSearch">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="listSkills" class="col-sm-2 control-label">Select Skills</label>
+          <div class="list-group col-sm-10" id="listSkills">
+              <a class="list-group-item" ng-class="{active: skill._id == currentSkill._id}" ng-repeat="skill in skills | filter: skillSearch" ng-click="selectSkill(skill)" Title="{{skill.name}}" target="_top">
+                {{skill.name}}</span>
+              </a>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dropdownMenu4" class="col-sm-2 control-label">Templates</label>
+          <div class="dropdown col-sm-10" id="dropdownMenu4">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title4">{{selectedTemplate}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="template in templates"><a tabindex="-1" href="#" ng-click="selectTemplate(template)">{{template.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="namegroup" class="col-sm-2 control-label">Title</label>
+          <div class="col-sm-10" id="namegroup">
+           <input name="name" type="text" ng-model="name" id="assessment_name" class="form-control" placeholder="Name" required>
+          </div>
+          <div ng-messages="assessmentForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Assessment title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name">Question body</label>
+          <div class="hero-unit" style="margin-top:10px">
+            <textarea class="textarea" ng-model="template.templateText" id="bootwysi" style="width:98%;height: 100px" widgest-wysihtml5=""></textarea>
+          </div>
+        </div>
+        <div id="templatePreview" class="form-group" preview-template="currentTemplate.template"></div>
+        <div class="form-group">
+          <div class="col-sm-20">
+            <button type="button" class="btn" ng-click="preview()">Compile</button>
+          </div>
+        </div>
+        <div id="assessmentPreview" class="form-group" preview-template="assessmentPreview.assessmentBody"></div>
+        <div class="form-group">
+          <div class="col-sm-20">
+            <input type="submit" class="btn btn-default">
+          </div>
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

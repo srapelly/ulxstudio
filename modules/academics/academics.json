@@ -1,0 +1,14 @@
+[
+  {
+    "name": "cbse",
+    "code": "CBSE"
+  },
+  {
+    "name": "icse",
+    "code": "ICSE"
+  },
+  {
+    "name": "ib",
+    "code": "IB"
+  }
+]

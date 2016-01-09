@@ -1,0 +1,37 @@
+<section ng-controller="TemplatesListController">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Templates</h1>
+      </div>
+      <div class="col-md-4" style="margin-top: 2em">
+        <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="filterTemplatesToDisplay()" />
+      </div>
+        <div class="radio col-md-4" style="margin-top: 2em">
+            <label><input type="radio" value="Question" ng-model="templateType" name="optradio">Question</label>
+            <label><input type="radio" value="Answer" ng-model="templateType" name="optradio">Answer</label>
+        </div>
+    </div>
+  </div>
+  <div class="list-group">
+    <ul>
+      <li class="list-group-item" ng-repeat="tmpl in pagedItems">
+           <p>
+             <strong> {{tmpl.name}} </strong>
+          </p>
+
+          <div class="pull-right">
+              <a class="btn btn-primary" ui-sref="templates.edit({templateId: template._id})">
+                  <i class="glyphicon glyphicon-edit"></i>
+              </a>
+              <a class="btn btn-primary" ng-click="remove();">
+                  <i class="glyphicon glyphicon-trash"></i>
+              </a>
+          </div>
+         <!-- <textarea ng-model="tmpl.template"></textarea> -->
+          <div preview-template="tmpl.template"></div>
+      </li>
+    </ul>
+  </div>
+
+</section>

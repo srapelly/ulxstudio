@@ -1,0 +1,58 @@
+<section ng-controller="SkillsController" ng-init="init()">
+  <div class="page-header">
+    <h1>List Skills by Grade Subject Topic</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="skillForm" class="form-horizontal"  ng-submit="create(skillForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label for="gradeId" class="">Grade</label>
+          <div class="dropdown" id="dropdownMenu1">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title1">{{selectedGrade}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="grade in grades"><a tabindex="-1" href="#" ng-click="selectGrade(grade)">{{grade.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subjectId" class="">Subject</label>
+          <div class="dropdown" id="dropdownMenu2">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title2">{{selectedSubject}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="subject in subjects"><a tabindex="-1" href="#" ng-click="selectSubject(subject)">{{subject.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="topicId" class="">Topic</label>
+          <div class="dropdown" id="dropdownMenu3">
+            <button class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+              <span id="dropdown_title3">{{selectedTopic}}</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+              <li ng-repeat="topic in topics"><a tabindex="-1" href="#" ng-click="getSkills(topic)">{{topic.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+          <div class="list-group">
+            <a class="list-group-item" ng-repeat="skill in skills" ui-sref="skills.view({skillId: skill._id})" Title="{{skill.name}}" target="_top">
+              {{skill.name}} <span class="label label-default label-pill pull-xs-right">14</span>
+            </a>
+          </div>
+        <div class="alert alert-warning text-center" ng-if="skills.$resolved && !skills.length">
+          No skills yet, why don't you <a ui-sref="skills.create">create new skill</a>?
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

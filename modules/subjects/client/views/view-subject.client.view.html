@@ -1,0 +1,21 @@
+<section ng-controller="SubjectsController" ng-init="findOne()">
+  <div class="page-header">
+    <h1 ng-bind="subject.name"></h1>
+  </div>
+  <div class="pull-right">
+    <a class="btn btn-primary" ui-sref="subjects.edit({subjectId: subject._id})">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="remove();">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Code
+      <span ng-bind="subject.code"></span>
+      Standard
+      <span ng-bind="subject.syllabus"></span>
+    </em>
+  </small>
+</section>

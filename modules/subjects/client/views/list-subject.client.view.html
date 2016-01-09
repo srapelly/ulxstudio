@@ -1,0 +1,20 @@
+<section ng-controller="SubjectsController" ng-init="find()">
+  <div class="page-header">
+    <h1>Subject</h1>
+  </div>
+  <div class="list-group">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+      <tr>
+        <th>Name</th><th>Code</th><th>Syllabus</th>
+      </tr>
+      <tr ng-repeat="subject in subjects">
+        <td><a ui-sref="subjects.view({subjectId: subject._id})" Title="Subject Name: {{subject.name}}" target="_top">{{subject.name}}</a></td>
+        <td>{{subject.code}}</td>
+        <td>{{subject.syllabus}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="subjects.$resolved && !subjects.length">
+    No subjects yet, why don't you <a ui-sref="subjects.create">create new subject</a>?
+  </div>
+</section>
